@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+<!-- Main body part  -->
+
+<!-- Page header section  -->
+<div class="block-header">
+    <div class="row clearfix">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <h1>최근 분기 기업 지표</h1>
+            <span>2020년 4분기 기준의 정보를 제공합니다.</span>
+        </div>
+        <div class="col-lg-8 col-md-12 col-sm-12 text-lg-right">
+
+        </div>
+    </div>
+</div>
+<div class="body">
+<form action="" method="post">
+    {% csrf_token %}
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<div class="input-group-text">
+<a aligntarget="_blank"> <i class="fas fa-building"></i>  업종 선택 &nbsp; &nbsp;</a>
+
+<div class="align-items-center">
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "1">기타 금융</input>
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "2">서비스업</input>
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "3">운수장비</input>
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "4">유통업</input>
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "5">의약품</input>
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "6">전기전자</input>
+    <input type="checkbox" aria-label="Checkbox for following text input" name = "category" value = "7">화학</input>
+</div>
+</div>
+</div>
+</div>
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<div class="input-group-text">
+<a aligntarget="_blank"> <i class="far fa-calendar-alt"></i> 분기 선택 &nbsp; &nbsp;</a>
+
+<div class="align-items-center">
+    <input type="radio" aria-label="Radio for following text input" name = "quarter" value ="2020년 1분기">2020년 1분기
+    <input type="radio" aria-label="Radio for following text input" name = "quarter" value ="2020년 2분기">2020년 2분기
+    <input type="radio" aria-label="Radio for following text input" name = "quarter" value ="2020년 3분기">2020년 3분기
+    <input type="radio" aria-label="Radio for following text input" name = "quarter" value ="2020년 4분기">2020년 4분기
+</div>
+</div>
+</div>
+
+
+
+<!--        range slider-->
+<div class="row col-12">
+<div class=" col-12 ">
+<div class="irs-demo m-b-30"><p><b>PBR</b>
+<span class="irs-grid"></span>
+<span class="irs-shadow shadow-single" style="display: none;"></span>
+<input type="text" class = " form-control " id = "range_01_1" value="" name= "pbr" class="irs-hidden-input" readonly="">
+</div>
+
+<div class="irs-demo m-b-30"><b>PER</b>
+<span class="irs-grid"></span>
+<span class="irs-shadow shadow-single" style="display: none;"></span>
+<input type="text" class = " form-control "  id = "range_02_1" value="" name= "per" class="irs-hidden-input" readonly="">
+</div>
+
+<div class="irs-demo m-b-30"><b>시가총액 (단위: 1,000,000원)</b>
+<span class="irs-grid"></span>
+<span class="irs-shadow shadow-single" style="display: none;"></span>
+<input type="text"  class = " form-control " id = "range_03_1" value="" name= "market_cap" class="irs-hidden-input" readonly="">
+</div>
+</div>
+</div>
+
+
+
+
+<div class="col-md-12">
+<div class="card">
+<button type="submit" class="btn col-12 btn-primary justify-content-between justify-content-center theme-bg gradient">
+    <h3 class="text-light ">S  e  a  r  c h</h3>
+</button>
+</form>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="header">
+                <h2>조회 결과 : {% if quarter %}{{ quarter }}{% endif %}<small>전체 기업을 조회합니다. 찾고자하는 기업을 검색해주세요.</small></h2>
+                <ul class="header-dropdown dropdown">
+
+                    <li><a href="javascript:void(0);" class="full-screen"><i class="fa fa-expand"></i></a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                        <ul class="dropdown-menu theme-bg gradient">
+                            <li><a href="javascript:void(0);"><i class="dropdown-icon fa fa-eye"></i> View Details</a></li>
+                            <li><a href="javascript:void(0);"><i class="dropdown-icon fa fa-share-alt"></i> Share</a></li>
+                            <li><a href="javascript:void(0);"><i class="dropdown-icon fa fa-copy"></i> Copy to</a></li>
+                            <li><a href="javascript:void(0);"><i class="dropdown-icon fa fa-folder"></i> Move to</a></li>
+                            <li><a href="javascript:void(0);"><i class="dropdown-icon fa fa-edit"></i> Rename</a></li>
+                            <li><a href="javascript:void(0);"><i class="dropdown-icon fa fa-trash"></i> Delete</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-hover js-basic-example dataTable table-custom spacing5">
+                        <thead>
+                            <tr>
+                                <th>기업명</th>
+                                <th>매출액</th>
+                                <th>PBR</th>
+                                <th>PER</th>
+                                <th>시가총액</th>
+                                <th>현재주가</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>기업명</th>
+                                <th>매출액</th>
+                                <th>PBR</th>
+                                <th>PER</th>
+                                <th>시가총액</th>
+                                <th>현재주가</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                                {% for corporation in corporationList %}
+                                <tr>
+                                    <td><a href="{{corporation.corp_code.get_absolute_url}}">{{corporation.name}}</a></td>
+                                    <td>{{corporation.sales}}</td>
+                                    <td>{{corporation.pbr}}</td>
+                                    <td>{{corporation.per}}</td>
+                                    <td>{{corporation.market_cap}}</td>
+                                    <td>{{corporation.current_stock}}</td>
+                                </tr>
+                                {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
