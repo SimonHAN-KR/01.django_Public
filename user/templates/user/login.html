@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <div class="auth-main">
+        <div class="auth_div vivify fadeIn">
+            <div class="auth_brand">
+                <a class="navbar-brand" href="/"><img src="{% static 'assets/images/icon.svg' %}" width="50" class="d-inline-block align-top mr-2" alt="">SBSJ</a>
+            </div>
+            <div class="card">
+<!--                <button class="btn btn-signin-social"><i class="fa fa-facebook-official facebook-color"></i>Login in with Naver</button>-->
+<!--                    <div class="separator-linethrough"><span>OR</span></div>-->
+<!--                <div class="header">-->
+<!--                    <p class="lead mb-3">아이디로 로그인하기</p>-->
+<!--                </div>-->
+                <div class="body">
+                    <form method="POST" class="form-auth-small" action="">
+                        {% csrf_token %}
+                        <div class="form-group c_form_group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" id="username" placeholder="ID를 입력해주세요." name="username">  <!--id, name 확인하기-->
+                        </div>
+                        <div class="form-group c_form_group">
+                            <label>비밀번호</label>
+                            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요." name="password">  <!--id, name 확인하기-->
+                        </div>
+                        <div class="form-group clearfix">
+                            <!-- <label class="fancy-checkbox element-left">
+                                <input type="checkbox">
+                                <span>아이디 기억하기</span>
+                            </label>								 -->
+                        </div>
+                        <span style="color: red;">{{login_error}}</span>
+                        <button type="submit" class="btn btn-dark btn-lg btn-block">로그인</button>
+                        <div class="bottom">
+                            <!-- <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">비밀번호를 잊어버리셨나요?</a></span> -->
+                            <span>아이디가 없으신가요? <a href="../register">회원가입</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="animate_lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+<!-- Vedor js file and create bundle with grunt  --> 
+<script>
+    $('.choose-skin li').on('click', function() {
+	    var $body = $('body');
+	    var $this = $(this);
+  
+	    var existTheme = $('.choose-skin li.active').data('theme');
+
+	    $('.choose-skin li').removeClass('active');
+	    $body.removeClass('theme-' + existTheme);
+	    $this.addClass('active');
+	    var newTheme = $('.choose-skin li.active').data('theme');
+	    $body.addClass('theme-' + $this.data('theme'));
+	});
+
+	// Theme Setting 
+	$('.themesetting .theme_btn').on('click', function() {
+		$('.themesetting').toggleClass('open');
+	});
+	// dark version
+    $(".dark_mode input").on('change',function() {
+        if(this.checked) {
+            $("body").addClass('dark_active');
+        }else{
+            $("body").removeClass('dark_active');
+        }
+	});
+</script>
