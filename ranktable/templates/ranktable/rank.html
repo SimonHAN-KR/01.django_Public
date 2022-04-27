@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <div class="row clearfix row-deck">
+    </div>
+    <div class="row clearfix row-deck">
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                  <h2><center><strong>매출액</strong></center></h2>
+                </div>
+                <div class="body">
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                            <tr>
+                                <td><strong>기업코드</strong></td>
+                                <td class="text-center"><strong>기업명</strong></td>
+                                <td class="text-center"><strong>매출액(단위:억)</strong></td>
+                            </tr>
+
+                        {% for corp in corp_sales %}
+                            <tr>
+                                <td>{{ corp.corp_code }}</td>
+                                <td class="text-center"><a href="/detail/{{corp.corp_code}}">{{ corp.name }}</a></td>
+                                <td class="text-center"><span class="text-success">{{ corp.sales }}</span></td>
+                            </tr>
+                         {% endfor %}
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                  <h2><center><strong>영업이익</strong></center></h2>
+                </div>
+                <div class="body">
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                            <tr>
+                                <td><strong>기업코드</strong></td>
+                                <td class="text-center"><strong>기업명</strong></td>
+                                <td class="text-center"><strong>영업이익(단위:억)</strong></td>
+                            </tr>
+                         {% for corp in corp_op_profit %}
+                            <tr>
+                                <td>{{ corp.corp_code }}</td>
+                                <td class="text-center"><a href="/detail/{{corp.corp_code}}">{{ corp.name }}</a></td>
+                                <td class="text-center"><span class="text-success">{{ corp.op_profit }}</span></td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                  <h2><center><strong>당기순이익</strong></center></h2>
+                </div>
+                <div class="body">
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                             <tr>
+                                <td><strong>기업코드</strong></td>
+                                <td class="text-center"><strong>기업명</strong></td>
+                                <td class="text-center"><strong>당기순이익(단위:억)</strong></td>
+                            </tr>
+                        {% for corp in corp_net_income %}
+                            <tr>
+                                <td>{{ corp.corp_code }}</td>
+                                <td class="text-center"><a href="/detail/{{corp.corp_code}}">{{ corp.name }}</a></td>
+                                <td class="text-center"><span class="text-success">{{ corp.net_income }}</span></td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                  <h2><center><strong>PER</strong></center></h2>
+                </div>
+                <div class="body">
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                            <tr>
+                                <td><strong>기업코드</strong></td>
+                                <td class="text-center"><strong>기업명</strong></td>
+                                <td class="text-center"><strong>PER(단위:배)</strong></td>
+                            </tr>
+                              {% for corp in corp_PER %}
+                            <tr>
+                                <td>{{ corp.corp_code }}</td>
+                                <td class="text-center"><a href="/detail/{{corp.corp_code}}">{{ corp.name }}</a></td>
+                                <td class="text-center"><span class="text-success">{{ corp.per }}</span></td>
+                            </tr>
+                         {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2><center><strong>PBR</strong></center></h2>
+                </div>
+                <div class="body">
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                            <tr>
+                                <td><strong>기업코드</strong></td>
+                                <td class="text-center"><strong>기업명</strong></td>
+                                <td class="text-center"><strong>PBR(단위:배)</strong></td>
+                            </tr>
+                        {% for corp in corp_PBR %}
+                            <tr>
+                                <td>{{ corp.corp_code }}</td>
+                                <td class="text-center"><a href="/detail/{{corp.corp_code}}">{{ corp.name }}</a></td>
+                                <td class="text-center"><span class="text-success">{{ corp.pbr }}</span></td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2><center><strong>ROE</strong></center></h2>
+                </div>
+                <div class="body">
+                    <table class="table table-striped mb-0">
+                        <tbody>
+                            <tr>
+                                <td><strong>기업코드</strong></td>
+                                <td class="text-center"><strong>기업명</strong></td>
+                                <td class="text-center"><strong>ROE(단위:%)</strong></td>
+                            </tr>
+                        {% for corp in corp_ROE %}
+                            <tr>
+                                <td>{{ corp.corp_code }}</td>
+                                <td class="text-center"><a href="/detail/{{corp.corp_code}}">{{ corp.name }}</a></td>
+                                <td class="text-center"><span class="text-success">{{ corp.roe }}</span></td>
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
