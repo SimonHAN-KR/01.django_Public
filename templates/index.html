@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="row clearfix">
+    <div class="col-lg-6 cool-md-6 col-sm-12">
+        <div class="card">
+            <ul class="pricing body active">
+                <li class="plan-img"><img class="img-fluid rounded-circle" src="assets/images/plan-2.svg"/></li>
+                <li class="price">
+                    <h3><span>조건으로 검색하기</span></h3>
+                </li>
+                <li>원하는 조건을 설정하거나</li>
+                <li>해당 기업의 이름을 입력해서</li>
+                <li>조건에 맞는 기업을 찾습니다.</li>
+                <li class="plan-btn"><button class="btn btn-primary theme-bg gradient" onclick="location.href='searchtable/' ">조건 검색하기</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6 cool-md-6 col-sm-12">
+        <div class="card">
+            <ul class="pricing body active">
+                <li class="plan-img"><img class="img-fluid rounded-circle" src="assets/images/plan-3.svg" /></li>
+                <li class="price">
+                    <h3><span>순위표 살펴보기</span></h3>
+                </li>
+                <li>투자에 필요한 주요 지표와</li>
+                <li>지표의 상위 종목을 살펴보고</li>
+                <li>투자를 고려하는 페이지입니다.</li>
+                <li class="plan-btn"><button class="btn btn-primary theme-bg gradient" onclick="location.href='rank/' ">순위표 살펴보기</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
